@@ -1,28 +1,72 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 
-export default function Home() {
+export default function Cadastrar() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const formData = {
+      name,
+      email,
+      password,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/cadastro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Cadastro realizado com sucesso:", result);
+      } else {
+        console.error("Erro ao cadastrar:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto mt-10 bg-white p-8 border-gray-300 rounded-b-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
         Cadastro
       </h2>
-      <form className="flex flex-col gap-3">
+      <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
         <input
+          value={name}
+          onChange={(e) => setName(e.target.value)} 
           placeholder="Nome"
           type="text"
-          className="w-full px-3 py-2  border border-gray-300 rounded-md focus:outline-none"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
         />
         <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)} 
           placeholder="Email"
           type="email"
-          className="w-full px-3 py-2  border border-gray-300 rounded-md focus:outline-none"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
         />
         <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           type="password"
-          className="w-full px-3 py-2  border border-gray-300 rounded-md focus:outline-none"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
         />
-        <button className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-400">
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-400"
+        >
           Cadastrar-se
         </button>
       </form>
