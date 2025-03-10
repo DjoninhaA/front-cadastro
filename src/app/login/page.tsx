@@ -1,3 +1,3 @@
 export default function Home() {
-  return <h1>GOHME</h1>;
+  return <h1>LOGIN</h1>;
 }
