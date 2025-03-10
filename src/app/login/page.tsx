@@ -17,13 +17,16 @@ export default function Login() {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://api-node-1-z7i9.onrender.com/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const result = await response.json();
       //   console.log(result);
@@ -49,7 +52,7 @@ export default function Login() {
       <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
         <input
           value={email}
-          onChange={(e) => setEmail(e.target.value)} 
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           type="email"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"

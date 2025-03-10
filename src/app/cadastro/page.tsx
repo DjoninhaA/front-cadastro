@@ -17,13 +17,16 @@ export default function Cadastrar() {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/cadastro", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://api-node-1-z7i9.onrender.com/cadastro",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         const result = await response.json();
@@ -44,14 +47,14 @@ export default function Cadastrar() {
       <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
         <input
           value={name}
-          onChange={(e) => setName(e.target.value)} 
+          onChange={(e) => setName(e.target.value)}
           placeholder="Nome"
           type="text"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
         />
         <input
           value={email}
-          onChange={(e) => setEmail(e.target.value)} 
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           type="email"
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none"
