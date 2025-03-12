@@ -48,7 +48,7 @@ export default function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="max-w-lg mx-auto bg-white p-15 border-gray-300 rounded-b-lg shadow-lg">
+      <div className="max-w-lg mx-auto bg-white p-15 border-gray-300 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Login
         </h2>
@@ -69,9 +69,9 @@ export default function Login() {
           />
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 px-4 rounded-xl 
-              hover:from-purple-400 hover:to-pink-400 transition-all duration-300 drop-shadow-lg text-lg font-semibold"
-            disabled={loading} // Desabilita o botão enquanto carrega
+            className="w-full bg-gradient-to-r from-purple-500 to-blue-400 text-white py-2 px-4 rounded-xl 
+              hover:from-purple-400 hover:to-blue-700 transition-all duration-300 drop-shadow-lg text-lg font-semibold"
+            disabled={loading}
           >
             {loading ? "Carregando..." : "Login"}
           </button>
@@ -79,8 +79,8 @@ export default function Login() {
         <Link
           href="/cadastro"
           className="w-full block text-center text-lg font-semibold 
-              bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent
-              hover:from-pink-400 hover:to-purple-400 transition-all duration-300 drop-shadow-lg py-3"
+              bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent
+              hover:purple-500 hover:to-purple-400 transition-all duration-300 drop-shadow-lg py-3"
         >
           Ir para Cadastro
         </Link>
