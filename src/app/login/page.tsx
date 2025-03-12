@@ -6,10 +6,12 @@ import Link from "next/link";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true);
 
     const formData = {
       email,
@@ -29,8 +31,6 @@ export default function Login() {
       );
 
       const result = await response.json();
-      //   console.log(result);
-
       localStorage.setItem("token", result);
 
       if (response.ok) {
@@ -41,6 +41,8 @@ export default function Login() {
       }
     } catch (error) {
       console.error("Erro ao realizar login:", error);
+    } finally {
+      setLoading(false); // Finaliza o carregamento
     }
   };
 
@@ -69,8 +71,9 @@ export default function Login() {
             type="submit"
             className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 px-4 rounded-xl 
               hover:from-purple-400 hover:to-pink-400 transition-all duration-300 drop-shadow-lg text-lg font-semibold"
+            disabled={loading} // Desabilita o botão enquanto carrega
           >
-            Login
+            {loading ? "Carregando..." : "Login"}
           </button>
         </form>
         <Link
