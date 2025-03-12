@@ -41,19 +41,25 @@ export default function ListarUsuarios() {
   }, []);
 
   return (
-    <div className="max-w2xl mx-auto mt-10 bg-white p-8">
-      <h2 className="text-2xl font-bold mb-6 text-center  text-gray-800">
+    <div className="max-w-2xl mx-auto mt-10 bg-gray-900 p-8 rounded-2xl shadow-lg text-white">
+      <h2 className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
         Lista de Usuários
       </h2>
-      <ul className="space-y-2 ">
+      <ul className="space-y-4">
         {allUsers.map((user) => (
           <li
             key={user.id}
-            className="bg-gray-100 p-4 rounded-lg text-center max-w-md mx-auto mt-10"
+            className="bg-gray-800 p-6 rounded-xl shadow-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
           >
-            <p className="font-semibold">ID: {user.id}</p>
-            <p className="font-semibold">Nome: {user.name}</p>
-            <p className="font-semibold">Email: {user.email}</p>
+            <p className="font-semibold text-lg">
+              ID: <span className="text-purple-400">{user.id}</span>
+            </p>
+            <p className="font-semibold text-lg">
+              Nome: <span className="text-pink-400">{user.name}</span>
+            </p>
+            <p className="font-semibold text-lg">
+              Email: <span className="text-blue-400">{user.email}</span>
+            </p>
           </li>
         ))}
       </ul>

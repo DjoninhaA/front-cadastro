@@ -66,14 +66,17 @@ export default function Login() {
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-400"
+          className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 px-4 rounded-xl 
+            hover:from-purple-400 hover:to-pink-400 transition-all duration-300 drop-shadow-lg text-lg font-semibold"
         >
-          login
+          Login
         </button>
       </form>
       <Link
         href="/cadastro"
-        className="w-full text-center text-blue-700 block hover:underline py-3"
+        className="w-full block text-center text-lg font-semibold 
+            bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent
+            hover:from-pink-400 hover:to-purple-400 transition-all duration-300 drop-shadow-lg py-3"
       >
         Ir para Cadastro
       </Link>
