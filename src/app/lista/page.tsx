@@ -40,6 +40,8 @@ export default function ListarUsuarios() {
     loadusers();
   }, []);
 
+  
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
       <div className="max-w-2xl mx-auto mt-10 bg-gray-900 p-8 rounded-2xl shadow-lg text-white">
