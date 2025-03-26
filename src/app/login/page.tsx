@@ -2,11 +2,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Toast from "../components/toast"; // Importe seu componente de Toast
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "warning"; } | null>(null);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -35,12 +37,15 @@ export default function Login() {
 
       if (response.ok) {
         console.log("Login realizado com sucesso:");
+        setToast({ message: "Login realizado com sucesso!", type: "success" });
         router.push("/lista");
       } else {
         console.error("Erro ao entrar:", response.statusText);
+        setToast({ message: "Erro ao realizar login. Tente novamente.", type: "error" });
       }
     } catch (error) {
       console.error("Erro ao realizar login:", error);
+      setToast({ message: "Erro ao realizar login. Tente novamente.", type: "error" });
     } finally {
       setLoading(false); // Finaliza o carregamento
     }
@@ -52,7 +57,10 @@ export default function Login() {
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Login
         </h2>
-        <form className="flex flex-col gap-3 text-black" onSubmit={handleSubmit}>
+        <form
+          className="flex flex-col gap-3 text-black"
+          onSubmit={handleSubmit}
+        >
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -85,6 +93,15 @@ export default function Login() {
           Ir para Cadastro
         </Link>
       </div>
+
+      {/* Exibindo o Toast */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)} // Fechar o Toast após 3 segundos
+        />
+      )}
     </div>
   );
 }
